@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('joke-form')
-  const jokeList = document.getElementById('joke-list')
-  const newJokeLi = document.createElement('li')
-  const username = document.getElementById('name-input').value
+
   let joke;
+   
 
   function fetchJoke(){
     fetch('https://icanhazdadjoke.com/', {
@@ -16,6 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   form.addEventListener('submit', (event) => {
+     event.preventDefault()
+     const username = document.getElementById('name-input').value
+     const jokeList = document.getElementById('joke-list')
+     const newJokeLi = document.createElement('li')
 
     if(username === "") return;
     fetchJoke()
@@ -23,5 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
     <span class="username">${username} says:</span> ${joke}
     `
     jokeList.appendChild(newJokeLi)
+
   })
 })
